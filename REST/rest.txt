@@ -1,0 +1,25 @@
+POST https://example.com/comments HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+### Get Access Token (Cloud Foundry using Client Credentials)
+# @name requestAccessToken
+POST {{$dotenv integration_tokenurl}}
+Authorization: Basic {{$dotenv integration_clientid}}:{{$dotenv integration_clientsecret}}
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&response_type=token
+### Fill Variables from Response
+@access_token = {{requestAccessToken.response.body.$.access_token}}
+
+###
+POST {{$dotenv integration_url}}/http/billing
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{}
