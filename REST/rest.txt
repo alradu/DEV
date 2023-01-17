@@ -6,7 +6,7 @@ content-type: application/json
     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
 }
 
-### Get Access Token (Cloud Foundry using Client Credentials)
+### Get Access Token (Cloud Foundry using Client Credentials - sample)
 # @name requestAccessToken
 POST {{$dotenv integration_tokenurl}}
 Authorization: Basic {{$dotenv integration_clientid}}:{{$dotenv integration_clientsecret}}
